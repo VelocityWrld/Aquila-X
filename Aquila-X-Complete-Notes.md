@@ -85,7 +85,7 @@ The following source notes preserve the supplied technical discussion of Aquila-
 - Advanced AI capabilities with autonomy and face recognition
 - Long-range and long-endurance with solar assist
 - Stealthy operation via dampened rotors and noise control
-- Modular for different missions (law enforcement, military, agriculture, telecom, etc.)
+- Modular for different authorized remote-sensing and observation missions
 - Expandable with multi-drone (swarm) support
 - Excellent in harsh climates and terrains
 

@@ -6,7 +6,7 @@
 
 Aquila-X is a conceptual surveillance and reconnaissance drone platform designed around a VTOL airframe, onboard AI processing, sensor fusion, HD and thermal imaging, long-range communications, and adaptable mission payloads. The concept combines a carbon-fiber-reinforced structure, brushless propulsion, smart battery management, solar augmentation, a Jetson Orin Nano-class onboard computer, and a rugged ground-control tablet.
 
-The platform is intended to support missions such as infrastructure observation, emergency response, agriculture, environmental monitoring, telecommunications support, and security-oriented reconnaissance. Mission-specific capabilities must be evaluated against applicable aviation, privacy, spectrum, export-control, and operational-safety requirements before implementation.
+The platform is intended to support authorized observation, mapping, inspection, emergency-response support, environmental measurement, and other remote-sensing tasks. Mission-specific capabilities must be evaluated against applicable aviation, privacy, spectrum, export-control, and operational-safety requirements before implementation.
 
 ## Current Status
 
