@@ -1,25 +1,49 @@
-# Power and Propulsion
+# Aquila-X Power and Propulsion
 
-## Propulsion Concept
+## Status
 
-The preliminary design uses brushless motors, electronic speed controllers, and low-noise propellers. Prototype materials reference approximately four to six VTOL motors and three to four mid-range ESCs, while the final-build concept references four high-performance ESCs with telemetry. The final motor count and geometry remain design decisions.
+**Status: Proposed configuration set.** The source presents prototype and advanced-design component lists rather than one finalized propulsion and power system. The values below are retained as source statements, estimates, or candidates and are not validated performance specifications.
 
-## Electronic Speed Controllers
+## Motor configurations
 
-An ESC receives commands from the flight controller and regulates motor power. Candidate feature requirements include telemetry, current and temperature monitoring, controlled acceleration, soft start and stop, braking behavior where appropriate, failsafe handling, and low-noise modulation. BLHeli_32, SimonK, T-Motor Alpha, and Hobbywing X-Rotor are examples mentioned in the source material, not confirmed selections.
+The prototype discussion references approximately four to six brushless DC motors for VTOL, with lower thrust than a later configuration. The advanced configuration references high-thrust brushless motors in a 3000–5000KV range. The source does not establish the final motor count, motor model, thrust requirement, propeller pairing, or airframe geometry.
 
-## Battery and Power Management
+The source also proposes low-KV brushless motors for quiet operation at lower speeds. This creates a configuration tension with the high-KV range stated for the advanced design. The documentation preserves both statements because the source does not establish whether they describe alternative configurations, a drafting inconsistency, or a final decision.
 
-The source concept references a 30 Ah Li-ion prototype battery and a 30–60 Ah smart-battery system with BMS and fast-charging circuitry for a later build. These values are preliminary and must be reconciled with cell chemistry, voltage, current demand, thermal limits, mass, enclosure, and aviation safety requirements.
+## ESC role and selection reasoning
 
-## Solar Augmentation
+An electronic speed controller regulates motor power in response to flight-controller commands. The source identifies braking, smooth acceleration, failsafe behavior, telemetry, low-noise modulation, and soft-start behavior as relevant features. Telemetry may include RPM, temperature, and power draw.
 
-Lightweight flexible solar sheets or integrated photovoltaic cells are proposed as an augmentation source. The source material mentions approximately 30–60 W support and a possible 10–20 minute endurance contribution. Actual benefit depends on area, illumination, orientation, conversion efficiency, power electronics, and mission profile; it must be measured rather than assumed.
+The source lists three to four mid-range ESCs in a prototype configuration and four high-performance ESCs with real-time telemetry in an advanced configuration. It names BLHeli_32 and SimonK as hobbyist examples and T-Motor Alpha and Hobbywing X-Rotor as advanced UAV examples. These are source-mentioned examples, not confirmed selections.
 
-## Propellers and Noise
+The design rationale is that precise ESC behavior can improve motor control, reduce abrupt energy spikes, and support quieter operation. Sinusoidal or field-oriented control is proposed to reduce switching noise and electromagnetic interference. Soft-start and soft-stop behavior are proposed to prevent sudden audible and electrical transients. Whether these behaviors are available in the selected hardware remains unresolved.
 
-Low-RPM, large-diameter propellers with optimized blade geometry may reduce acoustic output, subject to vehicle-size and thrust constraints. Composite or carbon-fiber materials, balanced assemblies, and careful motor alignment can reduce vibration. Tip-speed and aerodynamic noise should be measured during controlled testing.
+## Battery and battery management
 
-## Energy Verification
+The prototype materials list a 30Ah Li-ion battery pack. The advanced design lists a 30–60Ah smart battery system with a battery-management system and fast-charging circuit. The feature section separately states “30Ah+.” These values are retained as separate source statements; the repository does not select one capacity or claim that the figures are mutually compatible.
 
-The power budget should include hover, transition, cruise if applicable, payloads, onboard compute, communications, thermal management, reserve energy, and contingencies. Endurance claims should be based on repeatable tests with defined payload, weather, battery condition, and reserve criteria.
+The source links battery management to endurance, fast charging, thermal behavior, and power availability for motors, computing, payloads, and communications. It states a possible smart fast-charging result of 60% in 20–30 minutes, but no charger, current, thermal limit, cell arrangement, or test result is provided. The fast-charging figure is therefore an unvalidated source estimate.
+
+The required engineering questions include cell chemistry and configuration, voltage, peak current, discharge limits, BMS behavior, thermal protection, enclosure, mass, charging safety, and reserve policy. The source does not answer these questions.
+
+## Solar augmentation
+
+The source proposes lightweight flexible solar sheets for a prototype and integrated photovoltaic cells with a charge controller in an advanced configuration. It mentions low-wattage sheets, approximately 30–60W support, and a possible endurance contribution of roughly 10–20 minutes.
+
+The source itself qualifies solar contribution as limited unless upgraded. The result depends on available area, illumination, orientation, conversion losses, charge-controller behavior, aircraft attitude, and mission demand. No measurement or energy model is present, so solar augmentation remains a proposed supplement rather than a primary energy source.
+
+## Endurance claims and energy reasoning
+
+The source states an estimated flight time of 120–200 minutes and separately discusses solar augmentation and battery capacity. These are source estimates, not validated endurance. They cannot be treated as a guaranteed operating range because the source does not provide mass, thrust, hover power, payload mass, weather, battery voltage, reserve, or test conditions.
+
+A later validation path proposes comparing flight time with battery use and solar input. Until those measurements exist, the appropriate status is **requires validation**. The source does not establish whether the endurance estimate applies to the prototype, advanced configuration, a particular payload, or a particular flight mode.
+
+## Propellers and acoustic tradeoffs
+
+The source proposes carbon-nylon or composite low-noise propellers, low RPM, large diameter, optimized blade shapes, and a tip speed below 0.7 Mach to reduce high-frequency noise. These choices trade acoustic output against thrust, diameter clearance, mass, motor operating point, efficiency, and airframe packaging. The source does not provide propeller diameter, pitch, blade count, or test data.
+
+Ducted fans are also proposed for safety and noise shielding, with an explicit warning that efficiency may decrease. This remains an alternative rather than a selected architecture.
+
+## Power and propulsion integration questions
+
+The final motor count, motor KV, ESC count, ESC control method, propeller geometry, battery capacity, BMS configuration, charging circuit, solar area, thermal path, and endurance reserve remain unresolved. The power subsystem must eventually be evaluated together with payload operation, Jetson compute load, communications, camera use, and vibration or acoustic controls. No implementation detail should be inferred from common UAV practice.
