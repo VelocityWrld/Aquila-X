@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Aquila-X is a proposed VTOL unmanned aerial system intended to provide a modular platform for observation, mapping, infrastructure inspection, emergency response, agriculture, environmental monitoring, and other authorized remote-sensing missions.
+Aquila-X is a proposed VTOL unmanned aerial system intended as a modular platform for observation, mapping, environmental measurement, inspection, and other authorized remote-sensing tasks.
 
 ## Design Intent
 
@@ -22,7 +22,7 @@ The concept emphasizes autonomous assistance rather than unsupervised operation.
 
 ## Maturity Statement
 
-The material in this repository represents a design-stage concept. Performance estimates, component selections, endurance claims, market ratings, and operational features require verification through engineering analysis, controlled testing, supplier review, and regulatory approval.
+The material in this repository represents a design-stage concept. Performance estimates, component selections, endurance claims, and proposed features require verification through engineering analysis, controlled testing, component review, and regulatory approval.
 
 ## Development Principles
 

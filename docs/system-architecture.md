@@ -36,4 +36,4 @@ Interfaces should be documented with message formats, timing expectations, failu
 
 ## Safety Boundaries
 
-A production architecture would require independent review of flight termination and emergency landing behavior, loss-of-link handling, battery protection, thermal limits, sensor disagreement, software update security, and data retention. The current document defines a conceptual decomposition rather than a certified architecture.
+A mature implementation would require independent review of flight termination and emergency landing behavior, loss-of-link handling, battery protection, thermal limits, sensor disagreement, software update security, and data retention. The current document defines a conceptual decomposition rather than a certified architecture.
