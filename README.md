@@ -10,9 +10,9 @@ The platform is intended to support missions such as infrastructure observation,
 
 ## Current Status
 
-**Conceptual / design-stage.** The current repository documents a proposed system architecture and a preliminary prototype-to-production roadmap. It is not a flight-certified design, production build, validated performance report, or operational deployment package.
+**Conceptual / design-stage.** The current repository documents a proposed system architecture and a preliminary prototype-validation roadmap. It is not a flight-certified design, production build, validated performance report, or operational deployment package.
 
-All numerical values in the documentation should be treated as preliminary design targets or discussion estimates unless supported by later test data, supplier documentation, engineering analysis, and regulatory review.
+All numerical values in the documentation should be treated as preliminary design targets or discussion estimates unless supported by later test data, component documentation, engineering analysis, and regulatory review.
 
 ## System
 

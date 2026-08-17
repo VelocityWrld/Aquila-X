@@ -2,7 +2,7 @@
 
 ## Status
 
-The following hardware list is preliminary and describes candidate classes or source-discussed components. It is not a procurement list or a validated bill of materials.
+The following hardware list is preliminary and describes candidate classes or source-discussed components. It is not a validated bill of materials.
 
 ## Candidate Hardware
 

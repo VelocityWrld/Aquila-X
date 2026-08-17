@@ -6,7 +6,7 @@ This is a preliminary, non-certified system specification derived from the Aquil
 
 ## Mission and Operating Concept
 
-Aquila-X is intended as a modular VTOL unmanned aircraft for authorized observation, mapping, inspection, emergency response, agriculture, environmental monitoring, and related remote-sensing missions. The operating concept assumes a trained human operator, approved mission plan, defined recovery behavior, and compliance with applicable aviation and privacy requirements.
+Aquila-X is intended as a modular VTOL unmanned aircraft for authorized observation, mapping, inspection, environmental measurement, and related remote-sensing tasks. The operating concept assumes a trained human operator, approved mission plan, defined recovery behavior, and compliance with applicable aviation and privacy requirements.
 
 ## Preliminary Requirements
 
