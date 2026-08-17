@@ -43,3 +43,24 @@ The source proposes review of ITU frequency compliance and other regulatory requ
 ## Open questions
 
 The source leaves unresolved the selected links, frequency plan, antenna design, encryption and key-management design, command authority, telemetry schema, failover policy, payload-data policy, and the exact meaning and authorization of monitoring or interception functions. These questions should remain visible rather than being completed with common communications practice.
+
+
+## Communications engineering baseline
+
+The source supports a modular communications study rather than a closed radio architecture. The candidates are long-range RF, Wi-Fi, interchangeable 4G, encrypted 5.8 GHz, and possible satellite fallback. The engineering baseline should define one primary command-and-control path, optional payload-data paths, and explicit behavior when each path is unavailable. No radio model, antenna, frequency, transmit power, or range is selected in this repository.
+
+| Link function | Candidate source technology | Engineering data required before selection |
+| --- | --- | --- |
+| Flight-critical command and telemetry | Long-range RF | Frequency authorization, modulation, bandwidth, latency, range, antenna, power, link budget, and loss behavior. |
+| Local configuration or short-range data | Wi-Fi | Operating mode, security, range, coexistence, and whether it is disabled in flight. |
+| Wide-area backhaul | 4G dongle | Coverage, subscription-independent interface, power, antenna, latency, and loss behavior. |
+| Payload stream | Encrypted 5.8 GHz or other data link | Data rate, encryption/key management, interference tolerance, and antenna placement. |
+| Contingency path | Satellite fallback | Availability, latency, power, terminal mass, coverage, and operational authorization. |
+
+Flight-critical commands should not be treated as equivalent to payload video. The system must eventually define command freshness, authentication, operator authorization, stale-command rejection, and a recovery state for loss of communications. The source proposes redundancy and emergency landing but does not provide a trigger table or implementation evidence.
+
+## Verification requirements
+
+A communications test record should report received-signal behavior, packet loss, latency, throughput, antenna orientation, aircraft attitude, range, terrain, and simultaneous payload load. Tests should separately evaluate command and telemetry continuity, payload streaming, link failover, reconnection, and stale-command rejection. The current project contains no such results; all range and resilience statements remain proposed.
+
+The source’s RF-interception and signal-monitoring language is not promoted into a system requirement. It remains a source-described concept subject to explicit authorization, spectrum review, privacy controls, and a separate technical definition.

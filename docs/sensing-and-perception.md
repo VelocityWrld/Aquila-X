@@ -52,3 +52,31 @@ The source’s prototype-validation stages propose checking live HD feed, camera
 ## Open questions
 
 The source leaves unresolved the final sensor subset, exact camera and gimbal configuration, sensor mounting locations, calibration process, fusion authority, handling of disagreement, onboard-processing software, data retention, recognition thresholds, and the legal basis for sensitive sensing functions. These gaps remain visible rather than being completed with general UAV assumptions.
+
+
+## Engineering sensor-role matrix
+
+The following matrix converts the source list into engineering questions without asserting simultaneous installation or final selection.
+
+| Sensor or payload | Candidate role | Interface or dependency to resolve | Verification evidence |
+| --- | --- | --- | --- |
+| GPS | Position and navigation reference | Receiver model, update rate, antenna placement, loss detection, and electromagnetic compatibility | Static accuracy, dynamic track, outage, and interference tests. |
+| IMU | Attitude and motion measurement | Controller-integrated sensor configuration, mounting stiffness, calibration, and vibration spectrum | Calibration record, logged vibration data, and flight comparison. |
+| Barometer | Pressure altitude input | Enclosure pressure path, airflow exposure, temperature sensitivity, and fusion authority | Static and dynamic altitude comparison. |
+| Lidar | Range, obstacle, or terrain input | Range, field of view, mounting, scan rate, surface limitations, and data path | Target-range, terrain, lighting, and obstacle tests. |
+| Optical flow | Relative-motion support | Illumination, texture, altitude range, lens configuration, and fallback behavior | Controlled surface and lighting tests. |
+| Ultrasonic/IR | Short-range or environmental support | Exact sensor function, mounting, interference, and operating envelope | Range, surface, sunlight, and cross-interference tests. |
+| Temperature sensing | Health and thermal monitoring | Measurement locations, thresholds, logging, and response authority | Thermal soak and controlled load tests. |
+| HD/thermal PTZ | Observation and payload data | Gimbal interface, stabilization, mass, power, storage, and operator display | Image-quality, stabilization, latency, and thermal-scene tests. |
+
+The source’s sensor-fusion description combines Lidar, optical flow, ultrasonic, infrared, and barometer data, while other sections add GPS and IMU. This is retained as a proposed multi-sensor architecture; no filter, confidence model, or authoritative source is inferred.
+
+## Companion-compute boundary
+
+The Jetson Orin Nano is proposed for onboard AI processing and an “Aquila AI Core.” NVIDIA publishes a 7–25 W power range for the Jetson Orin Nano Super Developer Kit [1]. That range is a board-level reference, not the aircraft’s complete compute power budget. The specification must still resolve workload, thermal dissipation, storage, camera interface, process supervision, and what happens if the companion computer stops responding.
+
+The flight controller should not be assumed to depend on the Jetson for basic stabilization until an explicit interface and fault analysis exists. The proposed boundary is therefore: the Pixhawk candidate performs flight-critical control functions, and the Jetson candidate provides higher-level perception or planning assistance subject to an unresolved command-authority design.
+
+## References
+
+[1]: https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/ "NVIDIA Jetson Orin Nano Super Developer Kit"

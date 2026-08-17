@@ -46,3 +46,32 @@ The ground station should not make sensitive automated outputs self-executing. F
 ## Open questions
 
 The source leaves unresolved the tablet hardware and software, operator roles, mission-plan format, command authorization, alerting behavior, link-loss interface, logging schema, payload-data access, update process, and emergency-intervention workflow. These are documentation gaps, not invitations to add generic ground-control features.
+
+
+## Engineering operator-interface baseline
+
+The ground station remains a proposed rugged tablet and mission-planner interface. Its minimum engineering boundary is to authorize missions, display vehicle and link state, expose degraded conditions, display payload data where authorized, and provide an operator intervention path. It must not be described as an autonomous authority independent of the flight controller.
+
+The command relationship is provisionally represented as:
+
+```text
+Operator/tablet -> communications link -> vehicle command boundary -> flight controller
+                                                    \-> companion-compute assistance
+```
+
+This is a documentation-level boundary, not an implementation diagram. The command protocol, authorization, timeout behavior, and interface between Pixhawk and Jetson remain unresolved.
+
+## Minimum validation record
+
+For every controlled test, the ground-control record should associate the observed result with the airframe configuration, battery identity, payload configuration, software state, operator, weather, and communications state. At minimum, the source-supported measurements include flight time versus battery use, GPS or navigation precision, thermal behavior, cooling efficiency, communications behavior, camera tracking, and sensor placement.
+
+| Ground-control record | Why it matters | Status |
+| --- | --- | --- |
+| Vehicle configuration identifier | Prevents mixing results from different motors, batteries, payloads, or software. | Required record field; format unresolved. |
+| Battery voltage/current/energy | Supports the endurance and reserve calculations. | Required measurement; telemetry source unresolved. |
+| Flight mode and autonomy state | Distinguishes manual, assisted, and proposed AI behavior. | Required record; state taxonomy unresolved. |
+| Link state and operator commands | Establishes command continuity and response to degradation. | Required record; protocol unresolved. |
+| Sensor validity and warnings | Shows whether navigation/perception claims were made under valid inputs. | Required record; schema unresolved. |
+| Payload data access events | Supports authorization and sensitive-data accountability. | Required for future sensitive payload operation; policy unresolved. |
+
+The source proposes trained or skilled operators and controlled testing. That is retained as an operational prerequisite, not as evidence that a training program or standard operating procedure exists.

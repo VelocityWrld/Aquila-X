@@ -39,3 +39,27 @@ The later validation material proposes testing GPS or airspace precision, live n
 ## Unresolved questions
 
 The source does not establish the autonomy architecture, route-planning algorithm, map source, sensor confidence method, obstacle-avoidance policy, operator override behavior, recovery trigger, or test acceptance criteria. It also does not establish whether the proposed navigation functions are intended for a particular airframe geometry or payload mass. These remain open design questions.
+
+
+## Reference autonomy boundary
+
+The provisional reference architecture keeps the Pixhawk 6C as the candidate flight-control authority and the Jetson Orin Nano as the candidate companion processor. The source supports this separation by naming a dedicated flight controller and a separate Jetson-based AI computer, but it does not define the software interface or authority model. The Jetson’s published 7–25 W board power range is relevant to the power budget but does not establish workload latency or autonomy performance [1].
+
+A safe engineering baseline should therefore treat AI-assisted routing, terrain mapping, and obstacle avoidance as advisory or supervised functions until the following are explicitly resolved: command message definition, freshness and timeout rules, operator override, geofence or flight-limit enforcement, sensor-validity gating, and behavior on companion-computer failure. No autonomous function should be described as validated merely because the component list contains a Jetson.
+
+## Navigation verification matrix
+
+| ID | Function under study | Evidence required before performance claim |
+| --- | --- | --- |
+| NAV-001 | GPS/IMU-assisted state estimate | Logged truth comparison, initialization behavior, and defined loss/degradation test. |
+| NAV-002 | Lidar obstacle input | Range and detection tests across relevant surfaces, lighting, and approach speeds. |
+| NAV-003 | Terrain mapping | Defined map frame, resolution, update behavior, and repeatable comparison against surveyed reference. |
+| NAV-004 | Operator mission planning | Plan upload, review, authorization, modification, and abort test through the ground-control interface. |
+| NAV-005 | Companion-computer failure | Demonstrated bounded behavior when the Jetson stops, times out, or produces invalid output. |
+| NAV-006 | Low-battery or link-loss recovery | Defined trigger thresholds, recovery mode, and controlled test evidence. |
+
+The proposed “Stealth Mode” remains a constrained flight-mode concept. It must not reduce reserve, obstacle clearance, link reliability, or operator visibility merely to lower noise or power draw. The source does not provide numerical limits, so speed, altitude, power, and acoustic targets remain unresolved.
+
+## Reference
+
+[1]: https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/ "NVIDIA Jetson Orin Nano Super Developer Kit"

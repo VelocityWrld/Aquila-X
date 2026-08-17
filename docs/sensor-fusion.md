@@ -57,3 +57,27 @@ The source proposes controlled flights, data logging, GPS or airspace-precision 
 ## Open questions
 
 The source does not establish the estimator, calibration process, time synchronization, confidence representation, disagreement policy, sensor priority, data-retention format, or interface to the flight controller and autonomy layer. These questions remain unresolved.
+
+
+## Engineering fusion responsibilities
+
+The source supports a staged fusion responsibility model without specifying an implementation. Each sensor input should eventually carry at least a timestamp, validity state, and calibration identity before it is consumed by navigation or flight functions. This is an engineering requirement to be defined, not a claim that the current system implements it.
+
+| Fusion responsibility | Required definition | Current status |
+| --- | --- | --- |
+| Time alignment | Sensor timestamps, clock source, allowable skew, and delayed-data handling. | Unresolved. |
+| Calibration | Factory, installation, thermal, and in-field calibration records. | Unresolved. |
+| Validity | Conditions under which GPS, IMU, barometer, range, flow, and camera data are accepted or rejected. | Unresolved. |
+| Disagreement handling | Response to inconsistent position, altitude, motion, or obstacle measurements. | Unresolved. |
+| Output authority | Whether the fused state feeds Pixhawk, Jetson, operator display, or more than one consumer. | Unresolved. |
+| Degraded mode | Reduction in autonomy or recovery behavior when inputs are missing or invalid. | Proposed safety requirement; no implementation evidence. |
+
+The Pixhawk 6C publishes integrated inertial and barometric sensor resources, while the source separately proposes external Lidar, optical-flow, ultrasonic, infrared, and GPS inputs [1]. This makes the controller a plausible home for flight-state estimation, but the repository does not infer firmware support, bus wiring, estimator configuration, or sensor priority from the hardware list alone.
+
+## Verification evidence
+
+Before the fusion concept can support an engineering performance claim, tests should record synchronized raw inputs, validity transitions, fused outputs, and the selected reference truth. At minimum, the evidence should cover static initialization, controlled motion, GPS outage, optical-flow degradation, range-sensor saturation, barometric disturbance, vibration exposure, thermal changes, and companion-computer loss. The source proposes controlled flight and data logging but does not supply results or acceptance thresholds.
+
+## Reference
+
+[1]: https://docs.holybro.com/autopilot/pixhawk-6c/technical-specification "Holybro Pixhawk 6C Technical Specification"

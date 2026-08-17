@@ -49,3 +49,18 @@ A useful test record would need to keep acoustic observations connected to vibra
 ## Unresolved questions
 
 The source leaves the following open: the final propeller and motor combination; whether dampeners are used at motors, flight controller, payload, or all locations; the acceptable flexibility introduced by isolation; whether acoustic foam compromises cooling; whether ducting is worth its efficiency cost; which ESC behavior is implementable; how adaptive RPM interacts with flight safety; and what measurable acoustic definition “quiet” or “stealth” would use.
+
+
+## Additional Source Rationale
+
+The original proof-of-concept notes treat acoustic reduction as a combined airframe, propulsion, material, and control problem rather than as a single component choice. The proposed direction is to consider low-RPM, larger-diameter propellers with shaped blades, including a scimitar-like concept, while keeping propeller tip speed below the source-stated 0.7 Mach target. This is a concept target only; the source does not provide a selected propeller, thrust result, or acoustic measurement.
+
+The notes also propose smooth aerodynamic surfaces to reduce turbulence and whistling, and they mention ducted propellers as a possible safety and shielding option. Ducting is explicitly a tradeoff because it may add mass and reduce efficiency. Internal acoustic foam or anti-vibration mats, shock-absorbing motor mounts, and rubber or silicone isolation are likewise proposed possibilities, not confirmed construction details.
+
+The source connects quiet-flight behavior to mission context. It proposes adaptive RPM behavior and route planning that could avoid strongly reflective environments such as narrow urban corridors, as well as a software-defined quiet or “Stealth Mode” involving lower speed, reduced power transients, and less aggressive climb or descent. These ideas remain conceptual and must not supersede obstacle clearance, recovery behavior, battery protection, or other safety constraints.
+
+The original notes propose microphone and frequency-analyzer measurements across alternative propeller, motor, frame, and mounting arrangements. The purpose is comparative learning during the proof of concept: determine whether vibration and acoustic changes improve camera stability, sensor quality, flight precision, and operator comfort. No result is claimed by the source.
+
+## Unresolved PoC Questions
+
+The proof of concept does not yet establish whether acoustic reduction or vibration isolation should be prioritized first, whether dampening will introduce control-response problems, how much mass can be tolerated, or whether the same configuration can support both quiet operation and the required VTOL behavior. Those questions remain part of the concept evolution rather than closed engineering requirements.

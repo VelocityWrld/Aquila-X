@@ -47,3 +47,29 @@ The airframe is described in different places as lightweight CFRP with some 3D-p
 ## Open flight-system questions
 
 The source does not establish the final motor count, flight-controller selection, actuator-control interface, control-law implementation, autonomy authority, emergency-landing algorithm, test envelope, or evidence of successful flight. It also does not establish how any transition or forward-flight behavior would work; the source mainly establishes VTOL capability. These questions must remain visible until the project owner or later engineering records resolve them.
+
+
+## Reference flight-control configuration
+
+For engineering analysis, the provisional flight-control reference is a Holybro Pixhawk 6C paired with a Jetson Orin Nano-class companion computer. The Pixhawk remains the candidate flight-critical controller, while the Jetson remains a proposed higher-level compute element. This separation is an architectural hypothesis derived from the source’s separate component roles, not an implemented interface.
+
+Holybro publishes the Pixhawk 6C with an STM32H743 FMU, redundant inertial sensing, barometric sensing, two CAN buses, 16 PWM outputs, and a 6 V maximum input [1]. These data support a preliminary I/O and integration study but do not select firmware, actuator protocol, power module, or control laws.
+
+The motor/ESC/propeller arrangement is provisionally studied as four U5 KV400 motors on 6S with the manufacturer’s 14–16 inch propeller context. The published 2.85 kg maximum thrust per motor gives an arithmetic 11.4 kgf sum for four motors, but flight-control sizing must use measured operating points rather than that maximum. The power and propulsion document records the calculation and its limitations.
+
+## Flight-system requirements and verification intent
+
+| ID | Requirement or design question | Status | Verification evidence required |
+| --- | --- | --- | --- |
+| FLT-001 | The air vehicle shall provide controlled vertical take-off and landing within a defined test envelope. | Proposed | Instrumented restrained test followed by controlled flight test. |
+| FLT-002 | The flight-control layer shall maintain a bounded actuator command path independent of higher-level AI assistance. | Proposed architectural constraint | Interface review, fault-injection test, and flight-controller log review. |
+| FLT-003 | Loss or invalidity of navigation or perception inputs shall be detectable before those inputs are used for an autonomous command. | Unresolved implementation requirement | Sensor fault-injection and recorded-state verification. |
+| FLT-004 | Battery reserve and power-state thresholds shall be defined before endurance testing. | Open requirement | Power-budget review, low-voltage test, and controlled recovery test. |
+| FLT-005 | Vibration isolation shall not introduce an unstable control or sensor-mounting condition. | Open requirement | Accelerometer-spectrum comparison, mount inspection, and flight test. |
+| FLT-006 | Any AI-assisted command authority shall be explicitly bounded by the flight-control safety design. | Open requirement | Architecture review and supervised autonomy test. |
+
+The final values for mass, center of gravity, thrust margin, control-loop rate, actuator protocol, reserve, wind, and temperature remain unresolved. No generic UAV value should be substituted for these missing project decisions.
+
+## References
+
+[1]: https://docs.holybro.com/autopilot/pixhawk-6c/technical-specification "Holybro Pixhawk 6C Technical Specification"
