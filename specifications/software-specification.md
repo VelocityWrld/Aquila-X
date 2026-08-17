@@ -53,3 +53,28 @@ The current software status is therefore **requires validation** for all autonom
 ## Open software questions
 
 The implementation language, operating environment, model architecture, estimator, control interface, mission-plan schema, update process, security architecture, data-retention rules, failure behavior, and validation dataset remain unspecified. These gaps are preserved.
+
+
+## Reference compute integration
+
+The provisional software reference pairs the Pixhawk 6C candidate with the Jetson Orin Nano candidate. Holybro publishes the Pixhawk’s STM32H743 flight-management unit, sensor resources, CAN buses, and PWM outputs [1]. NVIDIA publishes the Jetson Orin Nano Super Developer Kit’s 67 INT8 TOPS, 8 GB LPDDR5, and 7–25 W board power range [2]. These facts support an integration study but do not select firmware, operating system, middleware, model, or message protocol.
+
+The proposed boundary is that the Pixhawk retains the flight-critical actuator and stabilization path, while the Jetson performs higher-level perception or routing assistance. The exact interface, data rate, timestamping, watchdog, command arbitration, and behavior after Jetson failure remain unresolved. The Jetson power range must be included in the aircraft power budget using the selected workload rather than the maximum TOPS label.
+
+## Software requirements and verification intent
+
+| ID | Requirement or design question | Status | Evidence required |
+| --- | --- | --- | --- |
+| SW-001 | Higher-level AI output shall not bypass the defined flight-control safety boundary. | Proposed safety constraint | Architecture review and command-path fault injection. |
+| SW-002 | Companion-computer loss or stale output shall be detectable. | Open requirement | Watchdog, timeout, and controlled failure test. |
+| SW-003 | Sensor inputs consumed by autonomy shall expose validity and timing state. | Open requirement | Logged interface review and degraded-input test. |
+| SW-004 | Mission-plan commands shall require defined operator authorization. | Open requirement | Ground-control authorization and replay test. |
+| SW-005 | Video, thermal, and recognition outputs shall have defined storage, access, retention, and human-review behavior. | Proposed for any future sensitive payload use | Security and data-governance review plus controlled system test. |
+| SW-006 | Any proposed Stealth Mode shall remain subordinate to flight, obstacle, reserve, and recovery constraints. | Proposed safety constraint | Mode-boundary and override test. |
+
+The current status of autonomy, obstacle avoidance, recognition, encryption, secure deletion, and emergency landing remains **requires validation**. No implementation detail should be inferred from the presence of a Jetson or a Pixhawk in the component list.
+
+## References
+
+[1]: https://docs.holybro.com/autopilot/pixhawk-6c/technical-specification "Holybro Pixhawk 6C Technical Specification"
+[2]: https://www.nvidia.com/en-us/autonomous-machines/embedded-systems/jetson-orin/nano-super-developer-kit/ "NVIDIA Jetson Orin Nano Super Developer Kit"
