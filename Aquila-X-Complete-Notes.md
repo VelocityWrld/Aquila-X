@@ -276,5 +276,3 @@ For AI-assisted, stable, and stealthy flight, you need precise motor control.
 ESCs with soft-start, low-noise modulation, and adaptive braking reduce noise and energy spikes.
 
 ---
-
-Would you like me to recommend specific ESC models for Aquila-X and how to integrate them in the schematic?
